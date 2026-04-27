@@ -21,10 +21,10 @@
 ### 1.2 数学基础
 熟练掌握以下向量计算：
 
-- 法向量 \(\mathbf{N}\) 的构造与归一化；
-- 光线方向 \(\mathbf{L}\)、视线方向 \(\mathbf{V}\)；
-- 反射向量 \(\mathbf{R}\) 或半程向量 \(\mathbf{H}\)；
-- 点乘截断 \(\max(0,\cdot)\) 与颜色范围钳制 clamp。
+- 法向量 $\mathbf{N}$ 的构造与归一化；
+- 光线方向 $\mathbf{L}$、视线方向 $\mathbf{V}$；
+- 反射向量 $\mathbf{R}$ 或半程向量 $\mathbf{H}$；
+- 点乘截断 $\max(0,\cdot)$ 与颜色范围钳制 clamp。
 
 ### 1.3 工程实践
 基于 `ti.ui.Window` 实现实时交互，通过滑动条动态修改光照参数并观察画面变化。
@@ -35,34 +35,34 @@
 
 Phong 光照模型：
 
-\[
+$$
 I = I_{ambient} + I_{diffuse} + I_{specular}
-\]
+$$
 
 其中：
 
 - 环境光：
-\[
+$$
 I_{ambient} = K_a \cdot C_{light} \cdot C_{object}
-\]
+$$
 
 - 漫反射：
-\[
+$$
 I_{diffuse} = K_d \cdot \max(0,\mathbf{N}\cdot\mathbf{L}) \cdot C_{light} \cdot C_{object}
-\]
+$$
 
 - 镜面高光（Phong 形式）：
-\[
+$$
 I_{specular} = K_s \cdot \max(0,\mathbf{R}\cdot\mathbf{V})^n \cdot C_{light}
-\]
+$$
 
 变量含义：
 
-- \(\mathbf{N}\)：表面法向量；
-- \(\mathbf{L}\)：指向光源方向；
-- \(\mathbf{V}\)：指向相机方向；
-- \(\mathbf{R}\)：理想反射方向；
-- \(n\)：高光指数（Shininess）。
+- $\mathbf{N}$：表面法向量；
+- $\mathbf{L}$：指向光源方向；
+- $\mathbf{V}$：指向相机方向；
+- $\mathbf{R}$：理想反射方向；
+- $n$：高光指数（Shininess）。
 
 ---
 
@@ -110,9 +110,9 @@ I_{specular} = K_s \cdot \max(0,\mathbf{R}\cdot\mathbf{V})^n \cdot C_{light}
 
 命中点处计算：
 
-- \(\mathbf{L}=\text{normalize}(light\_pos-p)\)
-- \(\mathbf{V}=\text{normalize}(ro-p)\)
-- Phong：\(\mathbf{R}=\text{reflect}(-\mathbf{L},\mathbf{N})\)
+- $\mathbf{L}=\text{normalize}(light\_pos-p)$
+- $\mathbf{V}=\text{normalize}(ro-p)$
+- Phong：$\mathbf{R}=\text{reflect}(-\mathbf{L},\mathbf{N})$
 
 随后累加 Ambient、Diffuse、Specular，并在写入像素前执行：
 
@@ -139,11 +139,11 @@ I_{specular} = K_s \cdot \max(0,\mathbf{R}\cdot\mathbf{V})^n \cdot C_{light}
 
 ### 5.1 Blinn-Phong 升级
 
-启用后以半程向量 \(\mathbf{H}=\text{normalize}(\mathbf{L}+\mathbf{V})\) 计算高光：
+启用后以半程向量 $\mathbf{H}=\text{normalize}(\mathbf{L}+\mathbf{V})$ 计算高光：
 
-\[
+$$
 I_{specular}^{Blinn} = K_s \cdot \max(0, \mathbf{N}\cdot\mathbf{H})^n \cdot C_{light}
-\]
+$$
 
 **现象对比（简述）**：
 
@@ -181,7 +181,7 @@ python main.py
 ## 7. 常见问题排查
 
 1. **画面全黑或异常乱码**
-   - 检查向量是否归一化（\(\mathbf{N},\mathbf{L},\mathbf{V}\) 必须单位化）。
+   - 检查向量是否归一化（$\mathbf{N},\mathbf{L},\mathbf{V}$ 必须单位化）。
 
 2. **黑色噪点/马赛克**
    - 确认漫反射和高光使用了 `ti.max(0.0, dot)`。
@@ -191,8 +191,16 @@ python main.py
 
 ---
 
-## 8. 提交说明
+## 8. 运行结果
 
-- 本次作业建议提交 GitHub 仓库链接；
-- 从课程要求角度，后续实验建议持续使用 GitHub 进行版本管理与提交。
+> 请在此处放置实验运行结果（视频或 GIF）。
+
+- 示例：`results/phong_demo.gif`
+- 示例：`results/phong_demo.mp4`
+
+你也可以直接在 README 中嵌入 GIF：
+
+```markdown
+![Phong 实验效果](results/phong_demo.gif)
+```
 
