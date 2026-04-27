@@ -113,7 +113,13 @@ $$
 
 - $\mathbf{L}=\text{normalize}(light\_pos-p)$
 - $\mathbf{V}=\text{normalize}(ro-p)$
-- Phong 反射向量：$\mathbf{R} = 2(\mathbf{N}\cdot\mathbf{L})\mathbf{N} - \mathbf{L}$（代码实现使用 `reflect(-L, N)`）
+- Phong 反射向量（数学表达）：
+
+$$
+\mathbf{R} = 2(\mathbf{N} \cdot \mathbf{L})\mathbf{N} - \mathbf{L}
+$$
+
+  代码实现：`reflect(-L, N)`
 
 随后累加 Ambient、Diffuse、Specular，并在写入像素前执行：
 
