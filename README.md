@@ -200,14 +200,7 @@ python main.py
 
 ## 8. 运行结果
 
-> 请在此处放置实验运行结果（视频或 GIF）。
+<img width="798" height="642" alt="ZlogYYjE_converted" src="https://github.com/user-attachments/assets/2a61c823-79f1-4c61-abe2-bfd97fdeca0c" />
 
-- 示例：`results/phong_demo.gif`
-- 示例：`results/phong_demo.mp4`
-
-你也可以直接在 README 中嵌入 GIF：
-
-```markdown
-![Phong 实验效果](results/phong_demo.gif)
 ```
 
