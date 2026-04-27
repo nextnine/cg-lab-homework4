@@ -1,4 +1,4 @@
-# 计算机图形学实验四：基于 Taichi 的 Phong/Blinn-Phong 光照与硬阴影
+# 计算机图形学实验四：Phong光照模型
 
 本项目使用 **Taichi + Ray Casting** 从零构建一个代码驱动的三维场景，并在每像素级别实现：
 
