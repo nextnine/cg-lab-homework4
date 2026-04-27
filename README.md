@@ -39,30 +39,31 @@ $$
 I = I_{ambient} + I_{diffuse} + I_{specular}
 $$
 
-其中：
+环境光：
 
-- 环境光：
 $$
 I_{ambient} = K_a \cdot C_{light} \cdot C_{object}
 $$
 
-- 漫反射：
+漫反射：
+
 $$
-I_{diffuse} = K_d \cdot \max(0,\mathbf{N}\cdot\mathbf{L}) \cdot C_{light} \cdot C_{object}
+I_{diffuse} = K_d \cdot \max(0, \mathbf{N} \cdot \mathbf{L}) \cdot C_{light} \cdot C_{object}
 $$
 
-- 镜面高光（Phong 形式）：
+镜面高光（Phong 形式）：
+
 $$
-I_{specular} = K_s \cdot \max(0,\mathbf{R}\cdot\mathbf{V})^n \cdot C_{light}
+I_{specular} = K_s \cdot \max(0, \mathbf{R} \cdot \mathbf{V})^n \cdot C_{light}
 $$
 
 变量含义：
 
-- $\mathbf{N}$：表面法向量；
-- $\mathbf{L}$：指向光源方向；
-- $\mathbf{V}$：指向相机方向；
-- $\mathbf{R}$：理想反射方向；
-- $n$：高光指数（Shininess）。
+- $\mathbf{N}$：表面法向量
+- $\mathbf{L}$：指向光源方向
+- $\mathbf{V}$：指向相机方向
+- $\mathbf{R}$：理想反射方向
+- $n$：高光指数（Shininess）
 
 ---
 
@@ -112,7 +113,7 @@ $$
 
 - $\mathbf{L}=\text{normalize}(light\_pos-p)$
 - $\mathbf{V}=\text{normalize}(ro-p)$
-- Phong：$\mathbf{R}=\text{reflect}(-\mathbf{L},\mathbf{N})$
+- Phong 反射向量：$\mathbf{R} = 2(\mathbf{N}\cdot\mathbf{L})\mathbf{N} - \mathbf{L}$（代码实现使用 `reflect(-L, N)`）
 
 随后累加 Ambient、Diffuse、Specular，并在写入像素前执行：
 
@@ -181,7 +182,7 @@ python main.py
 ## 7. 常见问题排查
 
 1. **画面全黑或异常乱码**
-   - 检查向量是否归一化（$\mathbf{N},\mathbf{L},\mathbf{V}$ 必须单位化）。
+   - 检查向量是否归一化（$\mathbf{N}$、$\mathbf{L}$、$\mathbf{V}$ 必须单位化）。
 
 2. **黑色噪点/马赛克**
    - 确认漫反射和高光使用了 `ti.max(0.0, dot)`。
